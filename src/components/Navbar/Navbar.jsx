@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../contexts/ProductContext";
+import { logout } from '../../apis/postAPIs';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -25,13 +26,17 @@ function Navbar() {
   }, []);
 
   const handleLogout = async () => {
+    const response = await logout();
+    console.log(response);
+   
     sessionStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
+
   const handleSearch = async () => {
     if (!searchQuery.trim()) return; 
     try {
-      const response = await fetch(`https://dath-cnpm.onrender.com/api/search?query=${searchQuery}`); // hmmmmmm
+      const response = await fetch(`http://localhost:8000/api/search?query=${searchQuery}`); // hmmmmmm
       if (response.ok) {
         const data = await response.json();
         console.log("Search results:", data);

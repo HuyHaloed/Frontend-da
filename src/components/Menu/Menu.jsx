@@ -42,26 +42,19 @@ const Menu = () => {
   const navigate = useNavigate();
 
   const renderProductLinks = (productsArray) => {
-    console.log(productsArray);
-  
-    if (!Array.isArray(productsArray)) {
-      return <p>No products available.</p>;
-    }
-  
-    return productsArray.map((product) => (
-      <a 
-        key={product.id} 
-        href={`/product/${product.id}`} 
-        onClick={(e) => {
-          e.preventDefault();
-          navigate(`/product/${product.id}`);
-        }}
-      >
-        {product.name}
-      </a>
-    ));
-  };
-  
+  return (productsArray || [] ).map((product) => (
+    <a 
+      key={product.id} 
+      href={`/product/${product.id}`} 
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(`/product/${product.id}`);
+      }}
+    >
+      {product.name}
+    </a>
+  ));
+};
 
   
   return (

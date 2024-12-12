@@ -4,12 +4,10 @@ import "./FeatureProduct.scss";
 import { TbPlayerTrackNextFilled } from "react-icons/tb";
 import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 
-const FeaturedProducts = ({ products = [] }) => {
+const FeaturedProducts = ({ products }) => {
   const navigate = useNavigate();
   const productsPerPage = 30;
   const [currentPage, setCurrentPage] = useState(1);
-  
-
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   const handleProductClick = (product) => {
@@ -21,32 +19,29 @@ const FeaturedProducts = ({ products = [] }) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page);
   };
 
-  const currentProducts = Array.isArray(products)
-    ? products.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage)
-    : [];
+  const currentProducts = products.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
   return (
     <section className="featured-products">
       <p className="featured-title">Tất Cả Sản Phẩm</p>
       <div className="product-grid" id="productGrid">
-        {currentProducts.length > 0 ? (
-          currentProducts.map((product) => (
-            <button
-              key={product.id}
-              className="product"
-              onClick={() => handleProductClick(product)}
-            >
-              <img src={product.image.split(",")[0]} alt={product.name} />
-              <p className="product-name">{product.name}</p>
-              <div className="price-sold">
-                <p1>{product.price} VNĐ</p1>
-              </div>
-              <button className="add-to-cart">Xem chi tiết</button>
-            </button>
-          ))
-        ) : (
-          <p>Không có sản phẩm để hiển thị</p>
-        )}
+        {currentProducts.map((product) => (
+          <button
+            key={product.id}
+            className="product"
+            onClick={() => handleProductClick(product)}
+          >
+            <img src={product.image.split(",")[0]} alt={product.name} />
+            <p className="product-name">{product.name}</p>
+            <div className="price-sold">
+              <p1>{product.price} VNĐ</p1>
+            </div>
+            <button className="add-to-cart">Xem chi tiết</button>
+          </button>
+        ))}
       </div>
       <div className="pagination">
         <button
@@ -68,7 +63,7 @@ const FeaturedProducts = ({ products = [] }) => {
           onClick={() => changePage(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
-          <TbPlayerTrackNextFilled />
+          <TbPlayerTrackNextFilled />.
         </button>
       </div>
     </section>

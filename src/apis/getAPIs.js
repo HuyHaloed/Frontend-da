@@ -11,16 +11,23 @@ export const checkLogin = async () => {
   }
 };
 
+export const getAllProducts = async () => {
+  const response = await axiosInstance.get(`/product/all`);
+
+  return response;
+};
+
 export const getProducts = async () => {
-  try {
-    const response = await axiosInstance.get("/home");
-    console.log("======",response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error 55555 products:", {error});
-    return [];
-  }
-}
+  const response = await axiosInstance.get(`/home`);
+
+  return response.data;
+};
+
+export const getSoldProducts = async () => {
+  const response = await axiosInstance.get(`/product/sold`);
+
+  return response;
+};
 
 export const getProductReview = async (id) => {
   const response = await axiosInstance.get(`/product/${id}`);
@@ -62,9 +69,15 @@ export const getCoupons = async () => {
   const response = await axiosInstance.get(`/coupon/`);
 
   return response.data;
-}
+};
 
 export const ProductsByCategory = async (categoryId) => {
   const response = await axiosInstance.get(`/cate/${categoryId}`);
   return response;
 };
+
+export const getAllUsers = async () => {
+  const response = await axiosInstance.get('/admin/all-users');
+  
+  return response;
+}

@@ -18,11 +18,9 @@ const BestSelling = ({ products }) => {
     setCurrentSlide((prev) => (prev === totalRows - 1 ? 0 : prev + 1));
   };
 
-  const validProducts = Array.isArray(products) ? products : [];
-
   const productRows = Array.from({ length: totalRows }, (_, rowIndex) => {
     const startIndex = rowIndex * productsPerRow;
-    return validProducts.slice(startIndex, startIndex + productsPerRow);
+    return products.slice(startIndex, startIndex + productsPerRow);
   });
 
   const handleProductClick = (product) => {
@@ -34,7 +32,7 @@ const BestSelling = ({ products }) => {
       <p className="carousel-title">Sản phẩm bán chạy</p>
 
       <button className="carousel-btn left-btn" onClick={prevSlide}>
-        <Icon icon="icon-park-solid:left-c" width="40" height="40" />
+        <Icon icon="icon-park-solid:left-c" width="40" height="40hh" />
       </button>
 
       <button className="carousel-btn right-btn" onClick={nextSlide}>
@@ -45,7 +43,9 @@ const BestSelling = ({ products }) => {
         {productRows.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            className={`product-slide ${rowIndex === currentSlide ? "active" : ""}`}
+            className={`product-slide ${
+              rowIndex === currentSlide ? "active" : ""
+            }`}
             style={{ display: rowIndex === currentSlide ? "flex" : "none" }}
           >
             {row.map((product) => (
@@ -78,6 +78,5 @@ const BestSelling = ({ products }) => {
     </div>
   );
 };
-
 
 export default BestSelling;
