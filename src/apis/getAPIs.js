@@ -14,6 +14,7 @@ export const checkLogin = async () => {
 export const getProducts = async () => {
   try {
     const response = await axiosInstance.get("/home");
+    console.log("======",response.data);
     return response.data;
   } catch (error) {
     console.error("Error 55555 products:", {error});

@@ -30,12 +30,13 @@ export const ProductProvider = ({ children }) => {
     const fetchProducts = async () => {
       try {
         const data = await getProducts();
+        console.log(data, "??????");
         setProducts(data);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error ??????? products:", error);
       }
     };
-
+    console.log("!!!!!");
     fetchProducts();
   }, []);
 
